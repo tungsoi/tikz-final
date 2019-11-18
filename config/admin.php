@@ -1,7 +1,7 @@
 <?php
 
 return [
-    'name' => 'Brazzer Administrator',
+    'name' => 'Tikz.vn',
     'logo' => '<img width="120" src="brazzer-admin/img/logo.png">',
     'logo-mini' => '<b>BB</b>',
     'bootstrap' => app_path('Admin/bootstrap.php'),
@@ -14,7 +14,7 @@ return [
         ],
     ],
     'directory' => app_path('Admin'),
-    'title' => 'Brazzer Administrator',
+    'title' => 'Tikz.vn',
     'https' => env('ADMIN_HTTPS', false),
     'auth' => [
         'controller' => Brazzer\Admin\Controllers\AuthController::class,

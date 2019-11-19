@@ -941,3 +941,19 @@ h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
     color: white !important;
     border-right: none !important;
 }
+
+
+.skin-black-light .main-header>.logo {
+    background-color: #343a40 !important;
+    color: white !important;
+    border-right: none !important;
+}
+
+.skin-black-light .main-header>.logo:hover {
+    background-color: #343a40 !important;
+    color: white !important;
+}
+
+.form-horizontal .control-label {
+    padding-top: 0px !important;
+}

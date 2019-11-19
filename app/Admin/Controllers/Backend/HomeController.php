@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Admin\Controllers;
+namespace App\Admin\Controllers\Backend;
 
 use App\Http\Controllers\Controller;
 use Brazzer\Admin\Controllers\Dashboard;

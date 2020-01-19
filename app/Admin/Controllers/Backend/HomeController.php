@@ -23,24 +23,17 @@ class HomeController extends Controller
                 $row->column(3, new InfoBox('New Orders', 'shopping-cart', 'green', '/demo/orders', '150%'));
                 $row->column(3, new InfoBox('Articles', 'book', 'yellow', '/demo/articles', '2786'));
                 $row->column(3, new InfoBox('Documents', 'file', 'red', '/demo/files', '698726'));
-            })
-            ->row(function (Row $row) {
-
+            })->row(function (Row $row) {
                 $words = 'Lorem ipsum dolor sit amet, consectetuer adipiscing elit.
                 Maecenas feugiat consequat diam. Maecenas metus. Vivamus diam purus, cursus a, commodo non,
                 facilisis vitae, nulla. Aenean dictum lacinia tortor. Nunc iaculis, nibh non iaculis aliquam,
                 orci felis euismod neque, sed ornare massa mauris sed velit. Nulla pretium mi et risus.';
                 $row->column(6, function (Column $column) use ($words) {
                     $column->append(new Alert($words));
-                    $column->append((new Alert($words, 'Alert!!'))->style('success')->icon('user'));
-                    $column->append((new Alert($words))->style('warning')->icon('book'));
-                    $column->append((new Alert($words))->style('info')->icon('info'));
                 });
                 $row->column(6, function (Column $column) use ($words) {
                     $column->append(new Callout($words));
                     $column->append((new Callout($words))->style('warning'));
-                    $column->append((new Callout($words))->style('info'));
-                    $column->append((new Callout($words, 'Warning!!'))->style('success'));
                 });
             });
     }

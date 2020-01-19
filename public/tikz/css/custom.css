@@ -287,3 +287,75 @@ ul.cardList li {
 .wrapper #cssmenu ul li.active {
     background: #0c87c1 !important;
 }
+.picture-thumnail img {
+    width: 293px !important;
+    height: 178px !important;
+    padding-bottom: 10px;
+}
+.picture-banner-detail img {
+    width: 100% !important;
+    height: 400px !important;
+}
+.float-right {
+    float: right;
+}
+.float-left {
+    float: left;
+}
+.no-border {
+    border: none !important;
+}
+.detail-title {
+    padding: 0 !important;
+    font-size: 18px !important;
+    color: #0c87c1 !important;
+    text-transform: uppercase !important;
+    font-weight: normal !important;
+}
+.uppercase {
+    text-transform: uppercase !important;
+}
+.bx-viewport {
+    left: 0 !important;
+}
+.more-picture img {
+    width: 120px !important;
+    height: auto !important;
+    margin-right: 10px !important;
+    margin-bottom: 10px !important;
+    cursor: pointer;
+    opacity: 0.5;
+}
+.more-picture img:hover {
+    opacity: 1;
+}
+
+.error {
+    color: red;
+}
+.recent ul li {
+    padding: 0px 0px !important;
+}
+.icon-social img {
+    width: 50px !important;
+    cursor: pointer;
+    transition: width 0.25s;
+}
+
+.icon-social img:hover {
+    width: 60px !important;
+}
+.wrapper .main .mainRight .tags .contentTag ul li {
+    padding-right: 0px !important;
+}
+.wrapper .footer .bottom {
+    background: #eaeaea !important;
+    font-size: 12px !important;
+    color: gray;
+    text-align: center;
+    padding: 10px 10px 0px 10px !important;
+    border-top: 1px solid #0d87c1;
+}
+.pd0 {
+    padding: 0px !important;
+}

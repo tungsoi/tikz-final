@@ -12,6 +12,7 @@
     <title>Tạp chí Tikz</title>
 
     @include('admin.tikz.frontend.layouts.style')
+    @yield('style')
 </head>
 
 <body>
@@ -27,12 +28,7 @@
                     <div class="col-md-8 col-sm-7">
                         <div class="mainLeft">
                             <div class="homePg">
-
-                                @include('admin.tikz.frontend.layouts.slide')
-
-                                <div class="row">
-                                    @yield('content')
-                                </div>
+                                @yield('content')
                             </div>
                         </div>
                     </div>
@@ -47,6 +43,11 @@
     </div>
 
     @include('admin.tikz.frontend.layouts.script')
+
+    <div id="fb-root"></div>
+    <script async defer crossorigin="anonymous" src="https://connect.facebook.net/vi_VN/sdk.js#xfbml=1&version=v5.0&appId=1106189999752866&autoLogAppEvents=1"></script>
+
+    @yield('script');
 </body>
 
 </html>

@@ -29,7 +29,7 @@ class TagController extends Controller
     {
         return $content
             ->header('Tags')
-            ->description(trans('admin.list'))
+            ->description('Danh sách')
             ->body($this->grid());
     }
 
@@ -44,7 +44,7 @@ class TagController extends Controller
     {
         return $content
             ->header('Tags')
-            ->description(trans('admin.edit'))
+            ->description('Chỉnh sửa')
             ->body(
                 $this->form()->edit($id)
             );
@@ -60,7 +60,7 @@ class TagController extends Controller
     {
         return $content
             ->header('Tags')
-            ->description(trans('admin.create'))
+            ->description('Tạo mới')
             ->body($this->form());
     }
 

@@ -9,6 +9,7 @@ use Brazzer\Admin\Grid;
 use Brazzer\Admin\Layout\Content;
 use Brazzer\Admin\Show;
 use App\Models\MenuHome;
+use Illuminate\Support\Str;
 
 class MenuHomeController extends Controller
 {
@@ -157,17 +158,12 @@ class MenuHomeController extends Controller
         $form->switch('status')->states($states);
 
         $form->saving(function ($form){
-            $form->code = \Str::slug($form->name);
-            $form->path = '/'.$form->code;
-            return $form;
+            $form->code = Str::slug($form->name);
         });
 
         $form->saved(function ($form){
-            $form->model()->code = \Str::slug($form->model()->name);
-            $form->model()->path = '/'.$form->model()->code;
+            $form->model()->code = Str::slug($form->model()->name);
             $form->model()->save();
-
-            return $form;
         });
 
         $form->footer(function ($footer)

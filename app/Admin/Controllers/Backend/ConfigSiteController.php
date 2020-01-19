@@ -30,7 +30,7 @@ class ConfigSiteController extends Controller
     {
         return $content
             ->header('Config Site')
-            ->description(trans('admin.list'))
+            ->description('Danh sách')
             ->body($this->grid());
     }
 
@@ -45,7 +45,7 @@ class ConfigSiteController extends Controller
     {
         return $content
             ->header('Config Site')
-            ->description(trans('admin.edit'))
+            ->description('Chỉnh sửa')
             ->body(
                 $this->form()->edit($id)
             );
@@ -61,7 +61,7 @@ class ConfigSiteController extends Controller
     {
         return $content
             ->header('Config Site')
-            ->description(trans('admin.create'))
+            ->description('Tạo mới')
             ->body($this->form());
     }
 
@@ -81,7 +81,6 @@ class ConfigSiteController extends Controller
                 $filter->like('code');
             });
 
-            $grid->id();
             $grid->code();
             // $grid->disableRowSelector();
 

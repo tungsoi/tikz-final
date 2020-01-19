@@ -18,6 +18,10 @@
 <script src="{{ asset('tikz/js/slide/jquery.bxslider.js') }}"></script>
 <script src="{{ asset('tikz/js/scriptNav.js') }}"></script>
 <script src="{{ asset('tikz/js/custom.js') }}"></script>
+<script src="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@9.17.1/build/highlight.min.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+<script src="https://unpkg.com/clipboard@2/dist/clipboard.min.js"></script>
+<script src="{{ asset('tikz/js/zoom.js') }}"></script>
 
 <script language="JavaScript">
     $(document).ready(function() {
@@ -35,4 +39,19 @@
         minViewMode: "months",
         language: 'vi'
     }).keydown(false);
+
+    let path = window.location.pathname;
+    let href = "";
+
+    if (path.split('/')[1] == 'pics') {
+        href = '/pics';
+    } else if (path.split('/')[1] == 'categories') {
+        href = '/categories';
+    }
+    else {
+        href = '/page/'+path.split('/')[2];
+    }
+
+    $('#cssmenu li').removeClass('active');
+    $('#cssmenu a[href="'+href+'"]').parent().addClass('active');
 </script>

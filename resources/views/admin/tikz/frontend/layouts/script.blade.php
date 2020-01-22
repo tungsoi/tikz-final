@@ -54,4 +54,8 @@
 
     $('#cssmenu li').removeClass('active');
     $('#cssmenu a[href="'+href+'"]').parent().addClass('active');
+
+    $('#menu-button img').click(function () {
+        $('.div-nmenu').toggle();
+    });
 </script>

@@ -359,3 +359,14 @@ ul.cardList li {
 .pd0 {
     padding: 0px !important;
 }
+#menu-button:after, #menu-button:before{
+    display: none !important;
+}
+#menu-button img {
+    width: 30px;
+    float: right;
+    display: inline;
+    position: absolute;
+    top: 7px;
+    right: 7px;
+}

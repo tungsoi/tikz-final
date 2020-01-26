@@ -22,7 +22,7 @@ class Picture extends Model
      *
      * @var array
      */
-    protected $fillable = ['title', 'code', 'description', 'avatar', 'images', 'user_created_id', 'sub_title', 'slug'];
+    protected $fillable = ['title', 'code', 'description', 'avatar', 'images', 'user_created_id', 'sub_title', 'slug', 'tags', 'categories'];
 
     public function getAvatarAttribute($avatar)
     {
@@ -54,5 +54,25 @@ class Picture extends Model
 
     public function userCreated() {
         return $this->hasOne('App\User', 'id', 'user_created_id');
+    }
+
+    public function getTagsAttribute($value)
+    {
+        return explode(',', $value);
+    }
+
+    public function setTagsAttribute($value)
+    {
+        $this->attributes['tags'] = implode(',', $value);
+    }
+
+    public function getCategoriesAttribute($value)
+    {
+        return explode(',', $value);
+    }
+
+    public function setCategoriesAttribute($value)
+    {
+        $this->attributes['categories'] = implode(',', $value);
     }
 }

@@ -370,3 +370,11 @@ ul.cardList li {
     top: 7px;
     right: 7px;
 }
+.taga-default:hover {
+    cursor: pointer;
+    color: white;
+    background: green;
+}
+.wrapper .main .mainLeft .homePg .slideNews .article {
+    border-bottom: none !important;
+}

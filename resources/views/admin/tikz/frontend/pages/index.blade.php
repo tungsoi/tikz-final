@@ -3,9 +3,30 @@
 @section('content')
 @include('admin.tikz.frontend.layouts.slide')
 
-
 <div class="row">
-@if(isset($pictures) && !is_null($pictures))
+    <div class="col-md-12">
+        <div class="titleBLog">
+            <br>
+            <label class="detail-title uppercase">
+                - danh sách hình vẽ khoa học
+            </label>
+        </div>
+    </div>
+@if (isset($tagSearch) && $tagSearch->count() > 0)
+<div class="col-md-12">
+    <br>
+    <div class="authorArticle float-left">Thẻ đính kèm: <strong class="label label-primary uppercase">{{ $tagSearch->name }}</strong></div> <br>
+</div>
+@endif
+
+@if (isset($cateSearch) && $cateSearch->count() > 0)
+<div class="col-md-12">
+    <br>
+    <div class="authorArticle float-left">Danh mục hình vẽ: <strong class="label label-primary uppercase">{{ $cateSearch->name }}</strong></div> <br>
+</div>
+@endif
+
+@if(isset($pictures) && $pictures->count() > 0)
 @foreach ($pictures as $picture)
 
 <div class="col-md-6">
@@ -30,7 +51,7 @@
                     <div class="otherArticle">
                         {{ date('d/m/Y', strtotime($picture->created_at)) }}
                         - {{ $picture->userCreated->name }}
-                        - {{ rand(10, 500) }} lượt xem
+                        - 300 lượt xem
                     </div>
                 </div>
             </div>
@@ -42,6 +63,11 @@
     <br><hr>
     <center>{!! $pictures->links() !!}</center>
 </div>
+@else
+    <div class="col-md-12">
+        <br>
+        <h4 class="uppercase">Không có hình vẽ nào</h4>
+    </div>
 @endif
 </div>
 

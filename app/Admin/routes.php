@@ -17,6 +17,9 @@ Route::group([
     $router->get('/pics/{slug}', 'HomeController@detailPicture')->name('pic.detail');
     $router->get('/page/{code}', 'HomeController@document')->name('home.document');
     $router->get('/categories', 'HomeController@category')->name('home.category');
+    $router->get('/pics/tag/{id}', 'HomeController@tag')->name('pic.tag');
+    $router->get('/pics/cate/{id}', 'HomeController@cate')->name('pic.cate');
+
 });
 
 // Backend

@@ -8,6 +8,7 @@ use App\Models\Tag;
 use App\Models\MenuHome;
 use App\Models\ConfigSite;
 use App\Models\Picture;
+use App\Models\Category;
 
 class HomeController extends Controller
 {
@@ -39,12 +40,16 @@ class HomeController extends Controller
     }
 
     public function detailPicture($slug) {
-        $picture = Picture::where('slug', $slug)->first();
-        $menus = $this->menu->whereStatus(1)->orderBy('order', 'asc')->get();
-        $tags = $this->tag->all();
-        $configSites = $this->configSite->all();
+        try {
+            $picture = Picture::where('slug', $slug)->first();
+            $menus = $this->menu->whereStatus(1)->orderBy('order', 'asc')->get();
+            $tags = $this->tag->all();
+            $configSites = $this->configSite->all();
 
-        return view('admin.tikz.frontend.pages.detail', compact('picture', 'menus', 'tags', 'configSites'));
+            return view('admin.tikz.frontend.pages.detail', compact('picture', 'menus', 'tags', 'configSites'));
+        } catch (\Exception $e) {
+            dd($e->getMessage());
+        }
     }
 
     public function document($code) {
@@ -65,6 +70,28 @@ class HomeController extends Controller
         $tags = $this->tag->all();
         $configSites = $this->configSite->all();
         $title = MenuHome::where('path', "/categories")->first()->name;
-        return view('admin.tikz.frontend.pages.category', compact('menus', 'tags', 'configSites', 'title'));
+        $categories = Category::all();
+        return view('admin.tikz.frontend.pages.category', compact('menus', 'tags', 'configSites', 'title', 'categories'));
+    }
+
+    public function tag($id) {
+        $tagSearch = Tag::find($id);
+        $pictures = Picture::where('tags', 'like', '%'.$id.'%')->paginate(8);
+        $menus = $this->menu->whereStatus(1)->orderBy('order', 'asc')->get();
+        $tags = $this->tag->all();
+        $configSites = $this->configSite->all();
+
+        return view('admin.tikz.frontend.pages.index', compact('menus', 'tags', 'configSites', 'pictures', 'tagSearch'));
+    }
+
+
+    public function cate($id) {
+        $cateSearch = Category::find($id);
+        $pictures = Picture::where('categories', 'like', '%'.$id.'%')->paginate(8);
+        $menus = $this->menu->whereStatus(1)->orderBy('order', 'asc')->get();
+        $tags = $this->tag->all();
+        $configSites = $this->configSite->all();
+
+        return view('admin.tikz.frontend.pages.index', compact('menus', 'tags', 'configSites', 'pictures', 'cateSearch'));
     }
 }

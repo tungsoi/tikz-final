@@ -34,7 +34,7 @@
                     @foreach ($tags as $tag)
                         <li>
                             <span></span>
-                            <a href="#" title="{{ $tag->name }}">{{ $tag->name }}</a> </li>
+                            <a href="{{ route('pic.tag', $tag->id) }}" title="{{ $tag->name }}" target="_blank">{{ $tag->name }}</a> </li>
                         <li>
                     @endforeach
                 @endif
@@ -92,14 +92,10 @@
                 <div class="titleFooter">
                     <label class="detail-title">Theo Dõi fanpage</label>
                 </div> <br>
-                {{-- <div class="fb-page" data-href="https://www.facebook.com/H&#xf4;m-Nay-Con-G&#xec;-108420127348477/" data-tabs="timeline" data-width="" data-height="" data-small-header="false" data-adapt-container-width="true" data-hide-cover="false" data-show-facepile="true"><blockquote cite="https://www.facebook.com/H&#xf4;m-Nay-Con-G&#xec;-108420127348477/" class="fb-xfbml-parse-ignore"><a href="https://www.facebook.com/H&#xf4;m-Nay-Con-G&#xec;-108420127348477/">Hôm Nay Con Gì</a></blockquote></div> --}}
-
                 <a href="#" class="icon-social">
                     <img src="{{ asset('tikz/img/images/icon_fb.png') }}" title="Trang Facebook" target="_blank" alt="" />
                 </a>
             </div>
         </div>
     </div>
-
-    <hr>
 </div>

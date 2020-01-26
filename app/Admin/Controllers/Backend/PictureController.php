@@ -11,6 +11,8 @@ use Brazzer\Admin\Controllers\ModelForm;
 use App\Models\Picture;
 use Illuminate\Support\Str;
 use Brazzer\Admin\Facades\Admin;
+use App\Models\Tag;
+use App\Models\Category;
 
 class PictureController extends Controller
 {
@@ -112,6 +114,8 @@ class PictureController extends Controller
             $form->textarea('description', 'Mô tả');
             $form->textarea('code', 'Mã code Tikz');
             $form->multipleFile('images', 'Hình ảnh minh hoạ')->removable();
+            $form->multipleSelect('tags', 'Thẻ đính kèm')->options(Tag::all()->pluck('name', 'id'));
+            $form->multipleSelect('categories', 'Danh mục hình vẽ')->options(Category::all()->pluck('name', 'id'));
 
             $form->saving (function (Form $form) {
                 $form->slug = Str::slug($form->title);
@@ -137,12 +141,8 @@ class PictureController extends Controller
      */
     public function show($id, Content $content)
     {
-        return $content
-            ->header('Danh mục hình vẽ')
-            ->description(trans('admin.detail'))
-            ->body(
-                    $this->detail($id)
-            );
+        $picture = Picture::find($id);
+        return redirect()->route('pic.detail', $picture->slug);
     }
 
     /**

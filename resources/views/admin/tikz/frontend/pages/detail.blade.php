@@ -63,7 +63,25 @@
                     <br>
                 </div>
             </div>
-            <div class="authorArticle float-right"><i>Tác giả: <strong>{{ $picture->userCreated->name }}</strong></i></div> <br>
+            <div class="authorArticle float-right"><i>Tác giả: <strong>{{ $picture->userCreated->name }}</strong></i></div> <br> <hr>
+            <div class="authorArticle float-left">
+                <i>Thẻ đính kèm:
+                    @if (!is_null($picture->tags))
+                        @foreach($picture->tags as $tag)
+                            <a class="label label-primary taga-default" href="#" target="_blank">{{ \App\Models\Tag::find($tag)->name ?? null }}</a>
+                        @endforeach
+                    @endif
+                </i>
+            </div> <br> <br>
+            <div class="authorArticle float-left">
+                <i>Danh mục hình vẽ:
+                    @if (!is_null($picture->categories))
+                        @foreach($picture->categories as $cate)
+                            <a class="label label-primary taga-default" href="#" target="_blank">{{ \App\Models\Category::find($cate)->name ?? null }}</a>
+                        @endforeach
+                    @endif
+                </i>
+            </div> <br>
         </div>
     </div>
     <hr>

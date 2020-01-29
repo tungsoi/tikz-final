@@ -10,31 +10,29 @@ use Brazzer\Admin\Layout\Row;
 use Brazzer\Admin\Widgets\InfoBox;
 use Brazzer\Admin\Widgets\Alert;
 use Brazzer\Admin\Widgets\Callout;
+use App\User;
+use App\Models\Picture;
+use App\Models\Tag;
+use App\Models\Category;
 
 class HomeController extends Controller
 {
     public function index(Content $content)
     {
         return $content
-            ->header('Dashboard')
-            ->description('Description...')
+            ->header('Bảng điều khiển')
+            ->description('...')
             ->row(function (Row $row) {
-                $row->column(3, new InfoBox('New Users', 'users', 'aqua', '/demo/users', '1024'));
-                $row->column(3, new InfoBox('New Orders', 'shopping-cart', 'green', '/demo/orders', '150%'));
-                $row->column(3, new InfoBox('Articles', 'book', 'yellow', '/demo/articles', '2786'));
-                $row->column(3, new InfoBox('Documents', 'file', 'red', '/demo/files', '698726'));
-            })->row(function (Row $row) {
-                $words = 'Lorem ipsum dolor sit amet, consectetuer adipiscing elit.
-                Maecenas feugiat consequat diam. Maecenas metus. Vivamus diam purus, cursus a, commodo non,
-                facilisis vitae, nulla. Aenean dictum lacinia tortor. Nunc iaculis, nibh non iaculis aliquam,
-                orci felis euismod neque, sed ornare massa mauris sed velit. Nulla pretium mi et risus.';
-                $row->column(6, function (Column $column) use ($words) {
-                    $column->append(new Alert($words));
+                $words = 'Hệ thống đang trong quá trình triển khai và nâng cấp tính năng, mọi yêu cầu hoặc đóng góp ý kiến vui lòng gửi về địa chỉ hòm thư: tungdt2@bambooairways.com.<br>Số điện thoại IT support: 0345.513.889';
+                $row->column(12, function (Column $column) use ($words) {
+                    $column->append((new Callout($words))->style('success'));
                 });
-                $row->column(6, function (Column $column) use ($words) {
-                    $column->append(new Callout($words));
-                    $column->append((new Callout($words))->style('warning'));
-                });
+            })
+            ->row(function (Row $row) {
+                $row->column(3, new InfoBox('Quản trị viên', 'users', 'aqua', 'admin/auth/users', User::all()->count()));
+                $row->column(3, new InfoBox('Hình vẽ', 'book', 'green', '/admin/pictures', Picture::all()->count()));
+                $row->column(3, new InfoBox('Thẻ đính kèm', 'tag', 'yellow', '/admin/tags', Tag::all()->count()));
+                $row->column(3, new InfoBox('Danh mục hình vẽ', 'file', 'red', '/admin/categories', Category::all()->count()));
             });
     }
 }

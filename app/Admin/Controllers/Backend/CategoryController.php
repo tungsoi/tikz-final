@@ -105,7 +105,7 @@ class CategoryController extends Controller
                     'name'  =>  $form->name,
                     'code'  =>  Str::slug($form->name)
                 ]);
-                return back()->with(compact('success'));
+                return back()->with('success');
             });
 
             $form->footer(function ($footer)

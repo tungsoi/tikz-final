@@ -37,7 +37,17 @@
                 <div class="col-sm-12 col-xs-4">
                     <div class="articleThumbnail">
                         <a href="{{ route('pic.detail', $picture->slug) }}" title="{{ $picture->title }}">
-                            <div class="hw-image picture-thumnail"><img src="{{ asset($picture->avatar) }}" alt="{{ $picture->title }}"/></div>
+                            <div class="hw-image picture-thumnail">
+                                <img
+
+                                @if ($picture->avatar != "images/")
+                                src="{{ asset($picture->avatar) }}"
+                                @else
+                                src="{{ asset('img/default-image.gif') }}"
+                                @endif
+
+                                alt="{{ $picture->title }}"/>
+                            </div>
                         </a>
                     </div>
                 </div>

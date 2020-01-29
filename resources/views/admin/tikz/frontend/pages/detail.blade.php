@@ -11,7 +11,20 @@
             <ul class="bxslider pd0">
                 <li>
                     <div class="hw-image picture-banner-detail">
-                        <img src="{{ asset($picture->avatar) }}" alt="{{ $picture->title }}" data-zoom-image="{{ asset($picture->avatar) }}"/>
+                        <img
+                            @if ($picture->avatar != "images/")
+                            src="{{ asset($picture->avatar) }}"
+                            @else
+                            src="{{ asset('img/default-image.gif') }}"
+                            @endif
+
+                            alt="{{ $picture->title }}"
+
+                            @if ($picture->avatar != "images/")
+                            data-zoom-image="{{ asset($picture->avatar) }}"
+                            @else
+                            data-zoom-image="{{ asset('img/default-image.gif') }}"
+                            @endif/>
                     </div>
                 </li>
             </ul>
@@ -19,7 +32,15 @@
         </div>
 
         <div class="slideNews more-picture">
-            <img src="{{ asset($picture->avatar) }}" alt="{{ $picture->title }}" />
+            <img
+                @if ($picture->avatar != "images/")
+                src="{{ asset($picture->avatar) }}"
+                @else
+                src="{{ asset('img/default-image.gif') }}"
+                @endif
+
+                alt="{{ $picture->title }}"
+            />
             @if (!is_null($picture->images))
                 @foreach ($picture->images as $image)
                     <img src="{{ asset($image) }}" alt="{{ $picture->title }}" />
@@ -58,7 +79,8 @@
                         Sao chép
                     </button>
                     <div id="bar">
-                        <pre><code class="go">{!! $picture->code !!}</code></pre>
+                        <pre><code class="go">@if (!is_null($picture->code)){!! $picture->code !!}
+                            @else"Đang cập nhật"@endif</code></pre>
                     </div>
                     <br>
                 </div>
@@ -115,11 +137,11 @@
             e.clearSelection();
         });
 
-        $(".picture-banner-detail img").elevateZoom({easing : true, scrollZoom : true, zoomWindowWidth:500, zoomWindowHeight:400});
-        setTimeout(function () {
-            $('.zoomContainer').eq(0).remove();
-            $('.zoomContainer').eq(1).remove();
-        }, 1000);
+        // $(".picture-banner-detail img").elevateZoom({easing : true, scrollZoom : true, zoomWindowWidth:500, zoomWindowHeight:400});
+        // setTimeout(function () {
+        //     $('.zoomContainer').eq(0).remove();
+        //     $('.zoomContainer').eq(1).remove();
+        // }, 1000);
     });
 </script>
 @endsection

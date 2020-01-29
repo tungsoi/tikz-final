@@ -1,5 +1,14 @@
 @extends('admin.tikz.frontend.layouts.master')
 
+@section('style')
+<style>
+.titleArticle a {
+    font-weight: bold;
+    font-size: 16px;
+}
+</style>
+
+@endsection
 @section('content')
 @include('admin.tikz.frontend.layouts.slide')
 

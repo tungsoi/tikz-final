@@ -101,11 +101,19 @@ class CategoryController extends Controller
             $form->text('name', 'Tên');
 
             $form->saving(function ($form) {
-                Category::create([
-                    'name'  =>  $form->name,
-                    'code'  =>  Str::slug($form->name)
-                ]);
-                return back()->with('success');
+                if (!is_null($form->model()->id)) {
+                    Category::find($form->model()->id)->update([
+                        'name'  =>  $form->name,
+                        'code'  =>  Str::slug($form->name)
+                    ]);
+                } else {
+                    Category::create([
+                        'name'  =>  $form->name,
+                        'code'  =>  Str::slug($form->name)
+                    ]);
+                }
+
+                return redirect('admin/categories')->with('success');
             });
 
             $form->footer(function ($footer)

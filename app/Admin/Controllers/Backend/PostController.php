@@ -8,17 +8,15 @@ use Brazzer\Admin\Grid;
 use Brazzer\Admin\Layout\Content;
 use Brazzer\Admin\Show;
 use Brazzer\Admin\Controllers\ModelForm;
-use App\Models\ConfigSite;
+use App\Models\Post;
+use Illuminate\Support\Str;
 use Brazzer\Admin\Facades\Admin;
+use App\Models\Tag;
+use App\Models\PostCategory;
 
-class ConfigSiteController extends Controller
+class PostController extends Controller
 {
     use ModelForm;
-
-    public function __construct()
-    {
-        //
-    }
 
     /**
      * Return page index
@@ -29,7 +27,7 @@ class ConfigSiteController extends Controller
     public function index(Content $content)
     {
         return $content
-            ->header('Thông tin chi tiết')
+            ->header('Bài viết')
             ->description('Danh sách')
             ->body($this->grid());
     }
@@ -44,7 +42,7 @@ class ConfigSiteController extends Controller
     public function edit($id, Content $content)
     {
         return $content
-            ->header('Thông tin chi tiết')
+            ->header('Bài viết')
             ->description('Chỉnh sửa')
             ->body(
                 $this->form()->edit($id)
@@ -60,7 +58,7 @@ class ConfigSiteController extends Controller
     public function create(Content $content)
     {
         return $content
-            ->header('Thông tin chi tiết')
+            ->header('Bài viết')
             ->description('Tạo mới')
             ->body($this->form());
     }
@@ -72,17 +70,27 @@ class ConfigSiteController extends Controller
      */
     protected function grid()
     {
-        return ConfigSite::grid(function(Grid $grid)
+        return Post::grid(function(Grid $grid)
         {
             $grid->model()->orderBy('id', 'desc');
             $grid->filter(function($filter){
                 $filter->expand();
                 $filter->disableIdFilter();
-                $filter->like('code');
+                $filter->like('name');
+            });
+            $grid->avatar('Ảnh đại diện')->display(function () {
+                $link = asset($this->avatar);
+                return '<img src="'.$link.'" style="width: 146.5px !important; height: 89px !important" class="img img-thumbnail">';
             });
 
-            $grid->code();
-            // $grid->disableRowSelector();
+            $grid->title('Tiêu đề');
+            $grid->sub_title('Tóm tắt')->style('width: 400px');
+            $grid->user_created_at('Người tạo')->display(function ($grid) {
+                return $this->userCreated->name ?? null;
+            });
+            $grid->created_at('Ngày tạo')->display(function ($grid) {
+                return date('H:i | d/m/Y', strtotime($this->created_at));
+            });
 
         });
     }
@@ -94,11 +102,21 @@ class ConfigSiteController extends Controller
      */
     public function form()
     {
-        return ConfigSite::form(function (Form $form)
+        return Post::form(function (Form $form)
         {
             $form->hidden('id', 'ID');
-            $form->text('code');
-            $form->textarea('content');
+            $form->hidden('user_created_id')->default(Admin::user()->id);
+            $form->hidden('slug', 'slug');
+
+            $form->image('avatar', 'Ảnh đại diện');
+            $form->text('title', 'Tiêu đề');
+            $form->textarea('sub_title', 'Tóm tắt');
+            $form->textarea('description', 'Mô tả');
+            $form->multipleSelect('categories', 'Danh mục bài viết')->options(PostCategory::all()->pluck('name', 'id'));
+
+            $form->saving (function (Form $form) {
+                $form->slug = Str::slug($form->title);
+            });
 
             $form->footer(function ($footer)
             {
@@ -108,7 +126,6 @@ class ConfigSiteController extends Controller
             });
 
             Admin::script($this->script());
-
         });
     }
 
@@ -121,12 +138,8 @@ class ConfigSiteController extends Controller
      */
     public function show($id, Content $content)
     {
-        return $content
-            ->header('Thông tin chi tiết')
-            ->description(trans('admin.detail'))
-            ->body(
-                    $this->detail($id)
-            );
+        $picture = Post::find($id);
+        return redirect()->route('pic.detail', $picture->slug);
     }
 
     /**
@@ -137,24 +150,30 @@ class ConfigSiteController extends Controller
      */
     protected function detail($id)
     {
-        $show = new Show(ConfigSite::findOrFail($id));
-
-        $show->code();
-
-        $show->content()->as(function ($content) {
-            return "<pre><span style='text-align: left'>{$content}</span></pre>";
-        })->label('null');
-
+        $show = new Show(Post::findOrFail($id));
+        $show->id('ID');
+        $show->name('Tên');
+        $show->code('Slug');
+        $show->created_at('Ngày tạo');
         return $show;
     }
+
 
     public function script()
     {
         return <<<EOT
         $(document).ready(function() {
-            $('textarea[name="content"]').summernote({
-                height: 500
+            $('textarea[name="code"]').summernote({
+                height: 300
             });
+            $('textarea[name="description"]').summernote({
+                height: 700
+            });
+
+            $('textarea[name="code"]').summernote('fontName', 'Tahoma');
+            $('textarea[name="description"]').summernote('fontName', 'Tahoma');
+            $('textarea[name="code"]').summernote('fontColor', 'black');
+
         });
 EOT;
 

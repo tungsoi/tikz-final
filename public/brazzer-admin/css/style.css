@@ -957,3 +957,10 @@ h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
 .form-horizontal .control-label {
     padding-top: 0px !important;
 }
+
+.skin-black-light .sidebar-menu>li>.treeview-menu {
+    background: #343a40 !important;
+}
+.treeview i.pull-right {
+    margin-top: -7px !important;
+}

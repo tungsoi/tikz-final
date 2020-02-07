@@ -378,3 +378,6 @@ ul.cardList li {
 .wrapper .main .mainLeft .homePg .slideNews .article {
     border-bottom: none !important;
 }
+.skin-black-light .sidebar-menu>li>.treeview-menu {
+    background: #343a40 !important;
+}

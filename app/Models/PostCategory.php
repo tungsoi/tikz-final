@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 use Brazzer\Admin\Traits\AdminBuilder;
 
-class Tag extends Model
+class PostCategory extends Model
 {
     use AdminBuilder;
 
@@ -14,10 +14,10 @@ class Tag extends Model
      *
      * @var string
      */
-    protected $table = "tags";
+    protected $table = "post_categories";
 
     /**
-     * Fillables
+     * Fields
      *
      * @var array
      */

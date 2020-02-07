@@ -7,10 +7,10 @@ use App\Http\Controllers\Controller;
 use App\Models\Tag;
 use App\Models\MenuHome;
 use App\Models\ConfigSite;
-use App\Models\Picture;
+use App\Models\Post;
 use App\Models\Category;
 
-class HomeController extends Controller
+class PostController extends Controller
 {
     private $menu;
     private $tag;
@@ -25,14 +25,14 @@ class HomeController extends Controller
 
     public function index()
     {
-        $pictures = Picture::paginate(8);
-        return view('admin.tikz.frontend.pages.index', compact('menus', 'tags', 'configSites', 'pictures'));
+        $posts = Post::paginate(8);
+        return view('admin.tikz.frontend.pages.post', compact('posts'));
     }
 
-    public function detailPicture($slug) {
+    public function detail($slug) {
         try {
-            $picture = Picture::where('slug', $slug)->first();
-            return view('admin.tikz.frontend.pages.detail', compact('picture'));
+            $post = Post::where('slug', $slug)->first();
+            return view('admin.tikz.frontend.pages.post-detail', compact('post'));
         } catch (\Exception $e) {
             dd($e->getMessage());
         }

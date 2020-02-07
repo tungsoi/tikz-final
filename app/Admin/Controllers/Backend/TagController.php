@@ -9,6 +9,7 @@ use Brazzer\Admin\Layout\Content;
 use Brazzer\Admin\Show;
 use Brazzer\Admin\Controllers\ModelForm;
 use App\Models\Tag;
+use Illuminate\Support\Str;
 
 class TagController extends Controller
 {
@@ -28,7 +29,7 @@ class TagController extends Controller
     public function index(Content $content)
     {
         return $content
-            ->header('Tags')
+            ->header('Thẻ đính kèm')
             ->description('Danh sách')
             ->body($this->grid());
     }
@@ -43,7 +44,7 @@ class TagController extends Controller
     public function edit($id, Content $content)
     {
         return $content
-            ->header('Tags')
+            ->header('Thẻ đính kèm')
             ->description('Chỉnh sửa')
             ->body(
                 $this->form()->edit($id)
@@ -59,7 +60,7 @@ class TagController extends Controller
     public function create(Content $content)
     {
         return $content
-            ->header('Tags')
+            ->header('Thẻ đính kèm')
             ->description('Tạo mới')
             ->body($this->form());
     }
@@ -101,6 +102,22 @@ class TagController extends Controller
         {
             $form->hidden('id', 'ID');
             $form->text('name');
+
+            $form->saving(function ($form) {
+                if (!is_null($form->model()->id)) {
+                    Tag::find($form->model()->id)->update([
+                        'name'  =>  $form->name,
+                        'code'  =>  Str::slug($form->name)
+                    ]);
+                } else {
+                    Tag::create([
+                        'name'  =>  $form->name,
+                        'code'  =>  Str::slug($form->name)
+                    ]);
+                }
+
+                return redirect('admin/tags')->with('success');
+            });
 
             $form->footer(function ($footer)
             {

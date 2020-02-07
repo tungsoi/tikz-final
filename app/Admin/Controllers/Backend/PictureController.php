@@ -27,7 +27,7 @@ class PictureController extends Controller
     public function index(Content $content)
     {
         return $content
-            ->header('Danh mục hình vẽ')
+            ->header('Hình vẽ')
             ->description('Danh sách')
             ->body($this->grid());
     }
@@ -42,7 +42,7 @@ class PictureController extends Controller
     public function edit($id, Content $content)
     {
         return $content
-            ->header('Danh mục hình vẽ')
+            ->header('Hình vẽ')
             ->description('Chỉnh sửa')
             ->body(
                 $this->form()->edit($id)
@@ -58,7 +58,7 @@ class PictureController extends Controller
     public function create(Content $content)
     {
         return $content
-            ->header('Danh mục hình vẽ')
+            ->header('Hình vẽ')
             ->description('Tạo mới')
             ->body($this->form());
     }
@@ -115,7 +115,7 @@ class PictureController extends Controller
             $form->textarea('code', 'Mã code Tikz');
             $form->multipleFile('images', 'Hình ảnh minh hoạ')->removable();
             $form->multipleSelect('tags', 'Thẻ đính kèm')->options(Tag::all()->pluck('name', 'id'));
-            $form->multipleSelect('categories', 'Danh mục hình vẽ')->options(Category::all()->pluck('name', 'id'));
+            $form->multipleSelect('categories', 'Hình vẽ')->options(Category::all()->pluck('name', 'id'));
 
             $form->saving (function (Form $form) {
                 $form->slug = Str::slug($form->title);

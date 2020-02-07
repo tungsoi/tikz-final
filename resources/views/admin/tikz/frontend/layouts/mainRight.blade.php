@@ -18,8 +18,24 @@
         <img src="{{ asset('tikz/img/images/pictureshare.jpg') }}" alt="" /> <a href="/book-magazine" class="" id="" title="Đặt Tạp Chí">Chia sẻ hình vẽ</a>
     </div>
 
-    <div class="dat">
-        <img src="{{ asset('tikz/img/images/bannerRight.png') }}" alt="" />
+    <hr>
+
+    <div class="tags">
+        <div class="titleFooter">
+            <label class="detail-title">Danh mục hình vẽ</label>
+        </div>
+        <div class="contentTag">
+            <ul>
+                @if (isset ($pictureCategories))
+                    @foreach ($pictureCategories as $pictureCategory)
+                        <li>
+                            <span></span>
+                            <a href="{{ route('pic.cate', $pictureCategory->code) }}" title="{{ $pictureCategory->name }}" target="_blank">{{ $pictureCategory->name }}</a> </li>
+                        <li>
+                    @endforeach
+                @endif
+            </ul>
+        </div>
     </div>
 
     <hr>
@@ -30,11 +46,11 @@
         </div>
         <div class="contentTag">
             <ul>
-                @if (isset ($tags))
-                    @foreach ($tags as $tag)
+                @if (isset ($pictureTags))
+                    @foreach ($pictureTags as $pictureTag)
                         <li>
                             <span></span>
-                            <a href="{{ route('pic.tag', $tag->id) }}" title="{{ $tag->name }}" target="_blank">{{ $tag->name }}</a> </li>
+                            <a href="{{ route('pic.tag', $pictureTag->code) }}" title="{{ $pictureTag->name }}" target="_blank">{{ $pictureTag->name }}</a> </li>
                         <li>
                     @endforeach
                 @endif

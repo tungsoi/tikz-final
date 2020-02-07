@@ -17,8 +17,10 @@ Route::group([
     $router->get('/pics/{slug}', 'HomeController@detailPicture')->name('pic.detail');
     $router->get('/page/{code}', 'HomeController@document')->name('home.document');
     $router->get('/categories', 'HomeController@category')->name('home.category');
-    $router->get('/pics/tag/{id}', 'HomeController@tag')->name('pic.tag');
-    $router->get('/pics/cate/{id}', 'HomeController@cate')->name('pic.cate');
+    $router->get('/pics/tag/{slug}', 'HomeController@tag')->name('pic.tag');
+    $router->get('/pics/cate/{slug}', 'HomeController@cate')->name('pic.cate');
+    $router->get('/posts', 'PostController@index')->name('post.index');
+    $router->get('/posts/{slug}', 'PostController@detail')->name('post.detail');
 
 });
 
@@ -36,6 +38,8 @@ Route::group([
         'tags'          =>  'TagController',
         'config_sites'  =>  'ConfigSiteController',
         'categories'    =>  'CategoryController',
-        'pictures'      =>  'PictureController'
+        'pictures'      =>  'PictureController',
+        'posts'         =>  'PostController',
+        'post_categories'   =>  'PostCategoryController'
     ]);
 });

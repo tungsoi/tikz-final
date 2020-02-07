@@ -3,6 +3,10 @@
 namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
+use App\Models\Category;
+use App\Models\ConfigSite;
+use App\Models\MenuHome;
+use App\Models\Tag;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -23,6 +27,13 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        //
+        $pictureCategories = Category::all();
+        $pictureTags = Tag::all();
+        $configSites = ConfigSite::all();
+        $menus = MenuHome::whereStatus(1)->orderBy('order', 'asc')->get();
+        view()->share('pictureCategories', $pictureCategories);
+        view()->share('pictureTags', $pictureTags);
+        view()->share('configSites', $configSites);
+        view()->share('menus', $menus);
     }
 }

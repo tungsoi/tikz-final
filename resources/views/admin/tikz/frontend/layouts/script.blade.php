@@ -47,6 +47,8 @@
         href = '/pics';
     } else if (path.split('/')[1] == 'categories') {
         href = '/categories';
+    } else if (path.split('/')[1] == 'posts') {
+        href = '/posts';
     }
     else {
         href = '/page/'+path.split('/')[2];

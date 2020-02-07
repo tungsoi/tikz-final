@@ -106,19 +106,6 @@
             </div> <br>
         </div>
     </div>
-    <hr>
-    <div class="contact_Pg">
-        <div class="blog comment">
-            <div class="titleBLog">
-                <label class="detail-title">Bình Luận</label>
-            </div>
-            <span id="message-comment"></span>
-
-            <div class="fb-like" data-href="http://tikz.local/pics" data-width="" data-layout="button_count" data-action="like" data-size="small" data-share="false"></div> <br>
-            <div class="fb-comments" data-href="http://tikz.local/pics" data-width="600" data-numposts="5"></div>
-        </div>
-        <br><br>
-    </div>
 </div>
 @endif
 @endsection

@@ -8,10 +8,10 @@ use Brazzer\Admin\Grid;
 use Brazzer\Admin\Layout\Content;
 use Brazzer\Admin\Show;
 use Brazzer\Admin\Controllers\ModelForm;
-use App\Models\ConfigSite;
-use Brazzer\Admin\Facades\Admin;
+use App\Models\PostCategory;
+use Illuminate\Support\Str;
 
-class ConfigSiteController extends Controller
+class PostCategoryController extends Controller
 {
     use ModelForm;
 
@@ -29,7 +29,7 @@ class ConfigSiteController extends Controller
     public function index(Content $content)
     {
         return $content
-            ->header('Thông tin chi tiết')
+            ->header('Danh mục hình vẽ')
             ->description('Danh sách')
             ->body($this->grid());
     }
@@ -44,7 +44,7 @@ class ConfigSiteController extends Controller
     public function edit($id, Content $content)
     {
         return $content
-            ->header('Thông tin chi tiết')
+            ->header('Danh mục hình vẽ')
             ->description('Chỉnh sửa')
             ->body(
                 $this->form()->edit($id)
@@ -60,7 +60,7 @@ class ConfigSiteController extends Controller
     public function create(Content $content)
     {
         return $content
-            ->header('Thông tin chi tiết')
+            ->header('Danh mục hình vẽ')
             ->description('Tạo mới')
             ->body($this->form());
     }
@@ -72,17 +72,18 @@ class ConfigSiteController extends Controller
      */
     protected function grid()
     {
-        return ConfigSite::grid(function(Grid $grid)
+        return PostCategory::grid(function(Grid $grid)
         {
             $grid->model()->orderBy('id', 'desc');
             $grid->filter(function($filter){
                 $filter->expand();
                 $filter->disableIdFilter();
-                $filter->like('code');
+                $filter->like('name');
             });
 
-            $grid->code();
-            // $grid->disableRowSelector();
+            $grid->name('Tên');
+            $grid->code('Slug');
+            $grid->created_at('Ngày tạo');
 
         });
     }
@@ -94,11 +95,26 @@ class ConfigSiteController extends Controller
      */
     public function form()
     {
-        return ConfigSite::form(function (Form $form)
+        return PostCategory::form(function (Form $form)
         {
             $form->hidden('id', 'ID');
-            $form->text('code');
-            $form->textarea('content');
+            $form->text('name', 'Tên');
+
+            $form->saving(function ($form) {
+                if (!is_null($form->model()->id)) {
+                    PostCategory::find($form->model()->id)->update([
+                        'name'  =>  $form->name,
+                        'code'  =>  Str::slug($form->name)
+                    ]);
+                } else {
+                    PostCategory::create([
+                        'name'  =>  $form->name,
+                        'code'  =>  Str::slug($form->name)
+                    ]);
+                }
+
+                return redirect('admin/categories')->with('success');
+            });
 
             $form->footer(function ($footer)
             {
@@ -106,8 +122,6 @@ class ConfigSiteController extends Controller
                 $footer->disableEditingCheck();
                 $footer->disableCreatingCheck();
             });
-
-            Admin::script($this->script());
 
         });
     }
@@ -122,7 +136,7 @@ class ConfigSiteController extends Controller
     public function show($id, Content $content)
     {
         return $content
-            ->header('Thông tin chi tiết')
+            ->header('Danh mục hình vẽ')
             ->description(trans('admin.detail'))
             ->body(
                     $this->detail($id)
@@ -137,26 +151,11 @@ class ConfigSiteController extends Controller
      */
     protected function detail($id)
     {
-        $show = new Show(ConfigSite::findOrFail($id));
-
-        $show->code();
-
-        $show->content()->as(function ($content) {
-            return "<pre><span style='text-align: left'>{$content}</span></pre>";
-        })->label('null');
-
+        $show = new Show(PostCategory::findOrFail($id));
+        $show->id('ID');
+        $show->name('Tên');
+        $show->code('Slug');
+        $show->created_at('Ngày tạo');
         return $show;
-    }
-
-    public function script()
-    {
-        return <<<EOT
-        $(document).ready(function() {
-            $('textarea[name="content"]').summernote({
-                height: 500
-            });
-        });
-EOT;
-
     }
 }

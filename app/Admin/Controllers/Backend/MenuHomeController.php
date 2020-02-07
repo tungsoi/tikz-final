@@ -24,7 +24,7 @@ class MenuHomeController extends Controller
     public function index(Content $content)
     {
         return $content
-            ->header('Index')
+            ->header('Menu Tikz.vn')
             ->description('description')
             ->body($this->grid());
     }
@@ -39,7 +39,7 @@ class MenuHomeController extends Controller
     public function show($id, Content $content)
     {
         return $content
-            ->header('Detail')
+            ->header('Menu Tikz.vn')
             ->description('description')
             ->body($this->detail($id));
     }
@@ -54,7 +54,7 @@ class MenuHomeController extends Controller
     public function edit($id, Content $content)
     {
         return $content
-            ->header('Edit')
+            ->header('Menu Tikz.vn')
             ->description('description')
             ->body($this->form()->edit($id));
     }
@@ -68,7 +68,7 @@ class MenuHomeController extends Controller
     public function create(Content $content)
     {
         return $content
-            ->header('Create')
+            ->header('Menu Tikz.vn')
             ->description('description')
             ->body($this->form());
     }

@@ -29,7 +29,7 @@
 <div class="col-md-6">
     <div class="panel panel-primary">
         <div class="panel-heading uppercase">
-            <a href="{{ route('pic.cate', $category->id) }}" target="_blank">{{ $key+1 .". ". $category->name }}</a>
+            <a href="{{ route('pic.cate', $category->code) }}" target="_blank">{{ $key+1 .". ". $category->name }}</a>
         </div>
     </div>
 </div>

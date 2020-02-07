@@ -8,7 +8,7 @@
     <!-- Tell the browser to be responsive to screen width -->
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
     @if(!is_null($favicon = Admin::favicon()))
-        <link rel="shortcut icon" href="{{$favicon}}">
+        <link rel="shortcut icon" href="{{ asset('tikz/img/images/icons8-puzzle-16.png')}}">
     @endif
     {!! Admin::css() !!}
     <script src="{{ Admin::jQuery() }}"></script>

@@ -139,7 +139,7 @@ class PostController extends Controller
     public function show($id, Content $content)
     {
         $picture = Post::find($id);
-        return redirect()->route('pic.detail', $picture->slug);
+        return redirect()->route('post.detail', $picture->slug);
     }
 
     /**

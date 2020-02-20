@@ -6,6 +6,7 @@ use Illuminate\Support\ServiceProvider;
 use App\Models\Category;
 use App\Models\ConfigSite;
 use App\Models\MenuHome;
+use App\Models\Slide;
 use App\Models\Tag;
 
 class AppServiceProvider extends ServiceProvider
@@ -35,5 +36,6 @@ class AppServiceProvider extends ServiceProvider
         view()->share('pictureTags', $pictureTags);
         view()->share('configSites', $configSites);
         view()->share('menus', $menus);
+        view()->share('slides', Slide::orderBy('order')->get());
     }
 }

@@ -43,7 +43,7 @@
     let path = window.location.pathname;
     let href = "";
 
-    if (path.split('/')[1] == 'pics') {
+    if (path.split('/')[1] == 'pics' || path.split('/')[1] == '') {
         href = '/pics';
     } else if (path.split('/')[1] == 'categories') {
         href = '/categories';

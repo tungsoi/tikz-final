@@ -10,9 +10,7 @@ Route::group([
     'prefix'     => '',
     'namespace'  => 'App\Admin\Controllers\Frontend'
 ], function(Router $router){
-    $router->get('/', function (){
-        return redirect('pics');
-    });
+    $router->get('/', 'HomeController@index');
     $router->get('/pics', 'HomeController@index')->name('home.index');
     $router->get('/pics/{slug}', 'HomeController@detailPicture')->name('pic.detail');
     $router->get('/page/{code}', 'HomeController@document')->name('home.document');
@@ -40,6 +38,7 @@ Route::group([
         'categories'    =>  'CategoryController',
         'pictures'      =>  'PictureController',
         'posts'         =>  'PostController',
-        'post_categories'   =>  'PostCategoryController'
+        'post_categories'   =>  'PostCategoryController',
+        'slides'   =>  'SlideController'
     ]);
 });

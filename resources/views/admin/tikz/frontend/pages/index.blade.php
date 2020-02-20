@@ -15,7 +15,7 @@
 <div class="row">
     <div class="col-md-12">
         <div class="titleBLog">
-            <br> <hr>
+            <hr>
             {{-- <label class="detail-title uppercase">
                 - danh sách hình vẽ khoa học
             </label> --}}
@@ -42,8 +42,13 @@
     <div class="blog">
 
         <div class="article">
+            <div class="titleBLog">
+                <label class="detail-title uppercase">
+                    - Hình vẽ khoa học
+                </label>
+            </div>
             <div class="row">
-                <div class="col-sm-12 col-xs-4">
+                <div class="col-sm-12 col-xs-5">
                     <div class="articleThumbnail">
                         <a href="{{ route('pic.detail', $picture->slug) }}" title="{{ $picture->title }}">
                             <div class="hw-image picture-thumnail">
@@ -60,7 +65,7 @@
                         </a>
                     </div>
                 </div>
-                <div class="col-sm-12 col-xs-8">
+                <div class="col-sm-12 col-xs-7">
                     <div class="titleArticle">
                         <a href="{{ route('pic.detail', $picture->slug) }}" class="uppercase" id="" title="{{ $picture->title }}">{{ $picture->title }}</a>
                     </div>
@@ -70,7 +75,7 @@
                     <div class="otherArticle">
                         {{ date('d/m/Y', strtotime($picture->created_at)) }}
                         - {{ $picture->userCreated->name }}
-                        - 300 lượt xem
+                        {{-- - 300 lượt xem --}}
                     </div>
                 </div>
             </div>

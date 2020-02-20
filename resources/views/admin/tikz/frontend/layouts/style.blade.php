@@ -7,6 +7,7 @@
 <link rel="stylesheet" href="{{ asset('tikz/css/stylesNav.css') }}" />
 <link rel="stylesheet" href="{{ asset('tikz/css/custom.css') }}" />
 <link rel="stylesheet" href="{{ asset('tikz/less/styles.css') }}" />
+<link rel="stylesheet" href="{{ asset('tikz/css/responsive.css') }}" />
 <link rel="stylesheet" href="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@9.17.1/build/styles/default.min.css">
 <link href="https://fonts.googleapis.com/css?family=Open+Sans&display=swap" rel="stylesheet">
 

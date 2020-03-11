@@ -26,7 +26,7 @@ class HomeController extends Controller
     public function index()
     {
         $pictures = Picture::paginate(8);
-        return view('admin.tikz.frontend.pages.index', compact('menus', 'tags', 'configSites', 'pictures'));
+        return view('admin.tikz.frontend.pages.index', compact('pictures'));
     }
 
     public function detailPicture($slug) {

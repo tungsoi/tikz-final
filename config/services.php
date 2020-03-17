@@ -30,4 +30,10 @@ return [
         'region' => env('AWS_DEFAULT_REGION', 'us-east-1'),
     ],
 
+    'facebook' => [
+        'client_id' => '195171988485848',
+        'client_secret' => '1ef243ba252c4a8cbecbcc1c7e8f0488',
+        'redirect' => 'https://tikz.vn/callback/facebook',
+    ],
+
 ];

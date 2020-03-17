@@ -31,6 +31,9 @@ Route::group([
 
     $router->get('/', 'HomeController@index')->name('admin.home');
 
+
+    // $router->get('/auth/redirect/{provider}', 'SocialController@redirect')->name('facebook.login');
+
     $router->resources([
         'menu_homes'    =>  'MenuHomeController',
         'tags'          =>  'TagController',
@@ -42,3 +45,19 @@ Route::group([
         'slides'   =>  'SlideController'
     ]);
 });
+
+Route::group(['middleware' => ['web']], function () {
+    Route::get(
+        'admin/auth/login/redirect/{provider}',
+        'App\Admin\Controllers\Backend\SocialController@redirect'
+    )->name('facebook.login');
+
+    Route::get(
+        'callback/{provider}',
+        'App\Admin\Controllers\Backend\SocialController@callback')
+    ->name('facebook.callback');
+});
+
+
+
+

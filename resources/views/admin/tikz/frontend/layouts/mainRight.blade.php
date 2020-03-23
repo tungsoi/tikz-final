@@ -15,7 +15,7 @@
     </div>
 
     <div class="dat">
-        <img src="{{ asset('tikz/img/images/pictureshare.jpg') }}" alt="" /> <a href="/book-magazine" class="" id="" title="Đặt Tạp Chí">Chia sẻ hình vẽ</a>
+        <img src="{{ asset('tikz/img/images/tikz_logo_new.png') }}" alt=""> <a href="/book-magazine" class="" id="" title="Đặt Tạp Chí">Chia sẻ hình vẽ</a>
     </div>
 
     <hr>

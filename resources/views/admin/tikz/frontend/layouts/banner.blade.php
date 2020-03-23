@@ -3,7 +3,7 @@
         <div class="col-sm-7">
             <div class="bannerLeft">
                 <a href="#">
-                    <a href="/"><img src="{{ asset('tikz/img/images/logo_banner.png') }}" title="Tạp chí Tikz @ 2017" alt="" /></a>
+                    <a href="/"><img src="{{ asset('tikz/img/images/tikz_logo_new.png') }}" title="Tạp chí Tikz @ 2017" alt="" /></a>
                 </a>
             </div>
         </div>

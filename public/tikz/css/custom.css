@@ -381,3 +381,60 @@ ul.cardList li {
 .skin-black-light .sidebar-menu>li>.treeview-menu {
     background: #343a40 !important;
 }
+.bannerRow {
+    width: 100%;
+    height: 33.33%;
+}
+.bannerLeft {
+    height: 200px;
+    overflow: hidden;
+    position: relative;
+}
+.bannerRowBg1 {
+    background: #6dcff6;
+}
+.bannerRowBg2 {
+    background: #35bef2;
+}
+.bannerRowBg3 {
+    background: #31aeef;
+}
+.no-mg-bottom {
+    margin-bottom: 0px !important;
+}
+.slogan {
+    text-align: center;
+    vertical-align: middle;
+    font-size: 40px;
+    color: #238b9c;
+    padding: 20px;
+}
+.bannerLogo {
+    width: 100%;
+    height: 100px;
+    position: absolute;
+    z-index: 100;
+    top: 8%;
+    left: 0;
+}
+.no-padding {
+    padding: 0px !important;
+}
+.bannerLogoSlogan {
+    text-align: center;
+    font-size: 27px;
+    vertical-align: middle;
+    color: #5b5834;
+    padding: 37px 0px;
+}
+.logoRadius {
+    max-width: 100px;
+    min-width: 100px;
+    max-height: 100%;
+    background: #fef799;
+    border-radius: 50%;
+    margin: 0 auto;
+}
+.h100 {
+    height: 100px;
+}
